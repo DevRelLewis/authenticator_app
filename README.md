@@ -1,7 +1,3 @@
-Here's a simple `README.md` for your Ruby authenticator program:
-
----
-
 # Ruby Authenticator Program
 
 ## Overview
