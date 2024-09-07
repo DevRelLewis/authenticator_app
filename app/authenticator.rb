@@ -1,47 +1,57 @@
 users = [
-            {username: "Lewis", password: "password1"},
-            {username: "Gregory", password: "password2"},
-            {username: "Lenny", password: "password3"},
-            {username: "Homer", password: "password4"},
-            {username: "Billy", password: "password5"}
-        ]
+    {username: "Lewis", password: "password1"},
+    {username: "Gregory", password: "password2"},
+    {username: "Lenny", password: "password3"},
+    {username: "Homer", password: "password4"},
+    {username: "Billy", password: "password5"}
+]
 
-$maxAttempts = 3
-$attemptsCounter = 0
-
-def authenticator
-    puts "Welcome to the Authenticator"
-    25.times { print "-"}
-    puts
-    puts "This program will take input from the user and compare the password to the correct password."
-    puts "If the password is correct, the user object will be returned"
-    
-    while $attemptsCounter < $maxAttempts
-        puts "Please enter your username"
-        name = gets.chomp
-        
-        if name == "Lewis"
-            puts "Your username is correct"
-            25.times { print "-"}
-            puts "\nPlease enter your password"
-            password = gets.chomp
-
-            if password == "password1"
-                puts "Password accepted"
-                break  # Exit the loop if the password is correct
-            else
-                $attemptsCounter += 1  # Increment attempts if the password is incorrect
-                puts "Password incorrect, attempt #{$attemptsCounter}"
-            end
-        else
-            puts "Username not recognized."
-            $attemptsCounter += 1  # Increment attempts if username is not recognized
-        end
-
-        if $attemptsCounter == $maxAttempts
-            puts "You've reached the maximum number of attempts. The program has ended. Please try again later."
-        end
+def find_user(users, input_username, input_password)
+    users.each do |user|
+        return user if user[:username].downcase == input_username.downcase && user[:password] == input_password
     end
+    nil 
 end
 
-authenticator
+def authenticate_user(users, username, password)
+  user = find_user(users, username, password)
+  if user
+    "Welcome, #{user[:username]}! Password accepted. Program ended successfully!"
+  else
+    nil
+  end
+end
+
+def authenticator(users)
+  puts "Welcome to the Authenticator"
+  25.times { print "-" }
+  puts "\nThis program will take input from the user and compare the password to the correct password."
+  puts "If the password is correct, the user object will be returned."
+
+  $max_attempts = 3
+  $attempts_counter = 0
+
+  while $attempts_counter < $max_attempts
+    puts "Please enter your username:"
+    name = gets.chomp
+    
+    puts "Please enter your password:"
+    password = gets.chomp
+
+    message = authenticate_user(users, name, password)
+
+    if message
+      puts message
+      break
+    else
+      $attempts_counter += 1
+      puts "Invalid username or password, attempt #{$attempts_counter}."
+    end
+
+    if $attempts_counter == $max_attempts
+      puts "You've reached the maximum number of attempts. Program ended. Please try again later."
+    end
+  end
+end
+
+authenticator(users)
