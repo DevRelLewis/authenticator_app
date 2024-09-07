@@ -39,7 +39,7 @@ def authenticator
         end
 
         if $attemptsCounter == $maxAttempts
-            puts "You've reached the maximum number of attempts. Please try again later."
+            puts "You've reached the maximum number of attempts. The program has ended. Please try again later."
         end
     end
 end
