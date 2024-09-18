@@ -1,27 +1,26 @@
-/* app/assets/stylesheets/articles.css */
 
-/* Add styles to the container */
+
+
 .articles-container {
-    display: flex;               /* Make the container a flex container */
-    flex-wrap: wrap;             /* Allow items to wrap to the next line */
-    justify-content: space-around; /* Evenly space the articles */
-    gap: 20px;                   /* Space between items */
-    padding: 10px;               /* Padding around the container */
-  }
-  
-  /* Add styles to each article */
+  display: flex;               
+  flex-wrap: wrap;             
+  justify-content: space-around; 
+  gap: 20px;                   
+  padding: 10px;               
+}
+
+
+.article {
+  flex: 1 1 calc(33.333% - 20px); 
+  box-sizing: border-box;       
+  border: 1px solid #ccc;      
+  padding: 10px;                
+  margin-bottom: 20px;          
+}
+
+
+@media (max-width: 768px) {
   .article {
-    flex: 1 1 calc(33.333% - 20px); /* Set flex-basis to one-third of the container width */
-    box-sizing: border-box;       /* Include padding and border in the element's width */
-    border: 1px solid #ccc;       /* Optional: Add a border */
-    padding: 10px;                /* Padding inside each article */
-    margin-bottom: 20px;          /* Space at the bottom of each article */
+    flex: 1 1 100%;             
   }
-  
-  /* Responsive Design: Stack the articles on smaller screens */
-  @media (max-width: 768px) {
-    .article {
-      flex: 1 1 100%;             /* Stack items on small screens */
-    }
-  }
-  
+}
