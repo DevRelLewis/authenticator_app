@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :articles
   root 'pages#home'
   get 'about', to: 'pages#about'
+  resources :articles, only: [:show]
   
   get "up" => "rails/health#show", as: :rails_health_check
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
