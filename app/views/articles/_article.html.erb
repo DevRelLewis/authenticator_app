@@ -8,4 +8,12 @@
     <strong>Description:</strong>
     <%= article.description %>
   </p>
+
+  <%# Only display "Show this article" link if not on the show page %>
+  <% unless action_name == 'show' %>
+    <p>
+      <%= link_to "Show this article", article %> |
+      <%= link_to "Destroy this article", article_path(article), method: :delete, data: {confirm: "Are you sure?"} %>
+    </p>
+  <% end %>
 </div>
